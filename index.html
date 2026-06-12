@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 💌</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6e7,#fff4d6);
+font-family:Georgia,serif;
+}
+
+
+/* FLOATING ENVELOPE */
+
+.envelope{
+width:190px;
+height:130px;
+background:#7a3e12;
+border-radius:15px;
+position:absolute;
+cursor:pointer;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+animation:fly 5s linear infinite;
+}
+
+@keyframes fly{
+0%{transform:translate(-60vw,-20vh) rotate(-10deg);}
+50%{transform:translate(50vw,20vh) rotate(15deg);}
+100%{transform:translate(-60vw,-20vh) rotate(-10deg);}
+}
+
+/* flap */
+.envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+border-left:95px solid transparent;
+border-right:95px solid transparent;
+border-top:70px solid #b86b2c;
+}
+
+/* stop animation */
+.stop{
+animation:none !important;
+}
+
+/* LETTER */
+
+.letter{
+display:none;
+position:absolute;
+width:80%;
+max-width:700px;
+height:75%;
+background:#d9bb82;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 40px rgba(0,0,0,.4);
+overflow:auto;
+animation:open .7s ease;
+}
+
+@keyframes open{
+from{transform:scale(.2);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.letter h1{
+text-align:center;
+margin-bottom:20px;
+font-style:italic;
+}
+
+.message{
+font-size:18px;
+line-height:1.6;
+font-style:italic;
+}
+
+
+/* BOUQUET */
+
+.bouquet{
+display:none;
+position:absolute;
+width:400px;
+height:400px;
+animation:pop .6s ease;
+}
+
+.bouquet img{
+width:100%;
+height:100%;
+object-fit:contain;
+filter:drop-shadow(0 20px 20px rgba(0,0,0,.4));
+}
+
+
+/* CAKE */
+
+.cake{
+display:none;
+position:absolute;
+width:520px;
+height:550px;
+background:transparent;
+text-align:center;
+animation:pop .6s ease;
+filter:drop-shadow(0 20px 30px rgba(0,0,0,.4));
+}
+
+/* top photos */
+.cake-photos{
+display:flex;
+justify-content:center;
+gap:15px;
+position:absolute;
+top:10px;
+width:100%;
+z-index:5;
+}
+
+.cake-photos img{
+width:110px;
+height:110px;
+object-fit:cover;
+border-radius:50%;
+border:5px solid white;
+}
+
+/* cake image */
+.cake-img{
+width:100%;
+height:420px;
+object-fit:contain;
+margin-top:70px;
+}
+
+.cake h2{
+margin-top:10px;
+color:#7a3e12;
+}
+
+/* POP ANIMATION */
+
+@keyframes pop{
+from{transform:scale(.1);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.hint{
+position:absolute;
+bottom:20px;
+font-size:18px;
+color:#7a3e12;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ENVELOPE -->
+<div class="envelope" id="env"></div>
+
+<!-- LETTER -->
+<div class="letter" id="letter">
+
+<h1>Happy Birthday 🎂</h1>
+
+<div class="message">
+
+happy birthday lay  ❤️<br><br>
+
+sorry ahh kung karon rako ni chat huhuhu gusto kasi nako mapag isa that time huhuhu.<br>
+like last chat nato duha katong sa zamboanga pako uhuhuh boring tas wala2 signal i know nasuko gyd ka sakoa
+kay wala ko ni reply sorry lay maulaw man ko mo chat balik gud tas busy kayko mag assist sakong ante lutang ko
+pero happy birthday lay  ❤️ i hope mag enjoy ka saimong bd dugay ko wa ni chat nimo kay para pod ma suprise ka chakss 
+bitaw sorry gyd basin naka ingon ka gi ghost tika wala uys nag observe rako nimo kanang naay time gusto tika chattan
+kay imong gipang mydy di na maayu kaso baka kasuko ka sakoa pero dae support kayko nimo basta aypaghikog tawon.<br><br>
+
+Bisan unsa ka lisod ang life, padayon lang gihapon sa pagtuo sa imong kaugalingon.<br>
+Deserve nimo ang kalipay, success, ug tanan nga nindot nga butang.<br><br>
+
+Ayaw kalimti nga naa kay mga tawo nga nagapabilin para nimo.<br><br>
+
+Happy Birthday! 🎉❤️
+
+</div>
+
+</div>
+
+<!-- BOUQUET -->
+<div class="bouquet" id="bouquet">
+    <img src="Untitled_design__21_-removebg-preview.png">
+</div>
+
+<!-- CAKE -->
+<div class="cake" id="cake">
+
+    <div class="cake-photos">
+        <img src="324f61f4-91e1-4efd-803d-b8f9803d53dc.jpg">
+        <img src="581de7cc-84a2-480a-b33b-49d79571f740.jpg">
+    </div>
+
+    <img class="cake-img" src="Untitled_design__18_-removebg-preview.png">
+
+    <h2>Happy Birthday 🎂</h2>
+
+</div>
+
+<div class="hint">Click the flying envelope 💌</div>
+
+<script>
+
+let env=document.getElementById("env");
+let letter=document.getElementById("letter");
+let bouquet=document.getElementById("bouquet");
+let cake=document.getElementById("cake");
+
+let step=0;
+
+/* envelope click */
+env.onclick=()=>{
+env.classList.add("stop");
+env.style.display="none";
+letter.style.display="block";
+step=1;
+}
+
+/* letter click -> bouquet */
+letter.onclick=()=>{
+if(step===1){
+letter.style.display="none";
+bouquet.style.display="block";
+step=2;
+}
+}
+
+/* bouquet click -> cake */
+bouquet.onclick=()=>{
+bouquet.style.display="none";
+cake.style.display="block";
+}
+
+</script>
+
+</body>
+</html>
